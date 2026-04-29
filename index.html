@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fundación Grandes Sabios | Formando Sabios, Construyendo Sueños</title>
+  <meta name="description" content="Fundación Grandes Sabios - Entidad sin ánimo de lucro dedicada a la educación, bienestar y desarrollo integral de comunidades vulnerables en Bogotá, Colombia.">
+  <link rel="icon" type="image/jpeg" href="ImagenesPagina/Logo/2bed00d7-9360-463d-bd21-fc77a395fa01.JPG">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="gs-institucional.css">
+
+  <style>
+    /* ══════════════════════════════════════════
+       HERO PRINCIPAL
+    ══════════════════════════════════════════ */
+    .hero-home {
+      min-height: 92vh;
+      background: var(--navy);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(13,37,69,0.88) 0%,
+        rgba(13,37,69,0.55) 60%,
+        rgba(13,37,69,0.35) 100%);
+      z-index: 1;
+    }
+    .hero-home-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,151,43,0.18);
+      border: 1px solid rgba(201,151,43,0.35);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+    .hero-home h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+    .hero-home h1 em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+    .hero-home p.hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: rgba(255,255,255,0.78);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hero-stats-row {
+      display: flex;
+      gap: 40px;
+      margin-top: 64px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stat-num {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-hint i {
+      font-size: 1.2rem;
+      animation: bounce 1.8s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(6px); }
+    }
+
+    /* ══════════════════════════════════════════
+       FRANJA DE PILARES
+    ══════════════════════════════════════════ */
+    .pillars-strip {
+      background: var(--navy);
+      padding: 0;
+    }
+    .pillars-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .pillar-item {
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-right: 1px solid rgba(255,255,255,.08);
+      transition: background .2s;
+    }
+    .pillar-item:last-child { border-right: none; }
+    .pillar-item:hover { background: rgba(255,255,255,.04); }
+    .pillar-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(201,151,43,.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+    .pillar-text strong {
+      display: block;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .pillar-text span {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,.45);
+    }
+    @media (max-width: 700px) {
+      .pillars-inner { grid-template-columns: 1fr; }
+      .pillar-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+    }
+
+    /* ══════════════════════════════════════════
+       SECCIÓN QUIÉNES SOMOS
+    ══════════════════════════════════════════ */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-img-mosaic {
+      position: relative;
+    }
+    .mosaic-main {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .mosaic-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 16px;
+      padding: 18px 22px;
+      text-align: center;
+      box-shadow: 0 12px 32px rgba(201,151,43,.4);
+    }
+    .mosaic-badge strong {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .mosaic-badge span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .about-text { padding: 20px 0; }
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-checks {
+      margin: 24px 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .about-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .about-check i {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 880px) {
+      .about-split { grid-template-columns: 1fr; gap: 40px; }
+      .mosaic-badge { right: 0; bottom: -16px; }
+    }
+
+    /* ══════════════════════════════════════════
+       PROGRAMAS (PREVIEW CARDS)
+    ══════════════════════════════════════════ */
+    .prog-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .prog-preview-card {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      text-decoration: none;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .prog-preview-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 52px rgba(13,37,69,.18);
+    }
+    .prog-preview-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+    .prog-preview-card:hover img { transform: scale(1.06); }
+    .prog-preview-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(13,37,69,.92) 0%,
+        rgba(13,37,69,.4) 60%,
+        transparent 100%);
+    }
+    .prog-preview-body {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+    }
+    .prog-preview-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(201,151,43,.25);
+      color: var(--gold-light);
+      border: 1px solid rgba(201,151,43,.3);
+      margin-bottom: 8px;
+    }
+    .prog-preview-card h3 {
+      font-family: var(--font-title);
+      font-size: 1.2rem;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .prog-preview-card p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.5;
+    }
+    .prog-preview-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-top: 12px;
+    }
+    /* Card featured (double wide) */
+    .prog-preview-card.featured-card {
+      grid-column: span 2;
+      min-height: 340px;
+    }
+    @media (max-width: 700px) {
+      .prog-preview-card.featured-card { grid-column: span 1; }
+    }
+
+    /* ══════════════════════════════════════════
+       NÚMEROS / IMPACTO
+    ══════════════════════════════════════════ */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--stone);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .impact-cell {
+      background: var(--white);
+      padding: 40px 32px;
+      text-align: center;
+    }
+    .impact-num {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .impact-num span { color: var(--gold); }
+    .impact-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    @media (max-width: 880px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .impact-grid { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════════════════
+       GALERÍA FOTOGRÁFICA
+    ══════════════════════════════════════════ */
+    .gallery-mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 12px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .gallery-mosaic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s, opacity .3s;
+      display: block;
+    }
+    .gallery-mosaic img:hover { transform: scale(1.04); opacity: .92; }
+    .gallery-mosaic .g-tall {
+      grid-row: span 2;
+    }
+    @media (max-width: 700px) {
+      .gallery-mosaic {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-mosaic .g-tall { grid-row: span 1; }
+    }
+
+    /* ══════════════════════════════════════════
+       ÚLTIMAS NOTICIAS (preview strip)
+    ══════════════════════════════════════════ */
+    .news-strip {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 24px;
+    }
+    .news-strip-main {
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .news-strip-main:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(13,37,69,.18); }
+    .news-strip-main img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      opacity: .6;
+    }
+    .news-strip-main-body { padding: 22px 24px 26px; flex: 1; }
+    .news-strip-main-body .ntag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 999px;
+      background: rgba(201,151,43,.2); color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+    .news-strip-main-body h3 {
+      font-family: var(--font-title); font-size: 1.25rem; color: #fff; line-height: 1.3; margin-bottom: 10px;
+    }
+    .news-strip-main-body p { font-size: .85rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+    .news-strip-side {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .news-side-card {
+      background: var(--white); border: 1px solid var(--stone); border-radius: 14px;
+      padding: 18px 20px; flex: 1; text-decoration: none;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .news-side-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(13,37,69,.1); }
+    .news-side-card .ntag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .68rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .ntag-gold { background: rgba(201,151,43,.12); color: var(--gold); }
+    .ntag-green { background: rgba(42,122,75,.12); color: var(--c-amb); }
+    .ntag-red   { background: rgba(201,91,27,.12);  color: var(--c-emo); }
+    .ntag-blue  { background: rgba(27,122,138,.12); color: var(--c-inc); }
+    .news-side-card h4 {
+      font-family: var(--font-title); font-size: 1rem; color: var(--navy); line-height: 1.3; margin-bottom: 6px;
+    }
+    .news-side-card p { font-size: .8rem; color: var(--muted); line-height: 1.55; }
+    @media (max-width: 880px) { .news-strip { grid-template-columns: 1fr; } }
+
+    /* ══════════════════════════════════════════
+       ALIADOS SLIDER (logos strip)
+    ══════════════════════════════════════════ */
+    .ally-ticker-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .ally-ticker-wrap::before,
+    .ally-ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ally-ticker-wrap::before { left: 0;  background: linear-gradient(to right, var(--cream), transparent); }
+    .ally-ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--cream), transparent); }
+    .ally-ticker {
+      display: flex;
+      gap: 40px;
+      width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .ally-ticker:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ally-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      padding: 0 20px;
+      filter: grayscale(100%);
+      opacity: .5;
+      transition: filter .3s, opacity .3s;
+    }
+    .ally-logo-wrap:hover { filter: grayscale(0); opacity: 1; }
+    .ally-logo-wrap img { height: 44px; width: auto; object-fit: contain; }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIO / QUOTE SECTION
+    ══════════════════════════════════════════ */
+    .quote-section {
+      background: var(--navy);
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .quote-inner { max-width: 800px; margin: 0 auto; }
+    .quote-icon {
+      font-size: 3rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .quote-text {
+      font-family: var(--font-title);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .quote-author {
+      font-size: .85rem;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       CTA CONTACTO HOME
+    ══════════════════════════════════════════ */
+    .home-cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(13,37,69,.14);
+    }
+    .home-cta-left {
+      background: var(--navy);
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .home-cta-left h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .home-cta-left p {
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .home-cta-right {
+      background: var(--gold);
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+    .cta-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--navy);
+    }
+    .cta-contact-icon {
+      width: 44px; height: 44px;
+      background: rgba(13,37,69,.12);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cta-contact-item strong { display: block; font-size: .8rem; font-weight: 700; margin-bottom: 2px; }
+    .cta-contact-item span { font-size: .95rem; font-weight: 600; }
+    @media (max-width: 760px) {
+      .home-cta-split { grid-template-columns: 1fr; }
+      .home-cta-left, .home-cta-right { padding: 40px 28px; }
+    }
+
+    /* ══ MISC RESPONSIVE ══ */
+    @media (max-width: 640px) {
+      .hero-home-inner { padding: 0 20px; }
+      .hero-stats-row { gap: 24px; }
+      .hero-stat-num { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="gs-topbar">
+  <div class="inner">
+    <span>Fundación Grandes Sabios · Bogotá, Colombia · Desde 2014</span>
+    <div class="tb-contacts">
+      <span class="tb-item tb-hide-mobile"><i class="bi bi-telephone-fill"></i><a href="tel:+573223042685">+57 322 304 2685</a></span>
+      <span class="tb-item"><i class="bi bi-envelope-fill"></i><a href="mailto:secretariageneral@grandessabios.org">secretariageneral@grandessabios.org</a></span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="gs-nav" id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img src="ImagenesPagina/Logo/2bed00d7-9360-463d-bd21-fc77a395fa01.JPG" alt="Logo Fundación Grandes Sabios">
+      <span>
+        <span class="brand-name">Fundación Grandes Sabios</span>
+        <span class="brand-tag">Educación · Ambiente · Bienestar</span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú"><i class="bi bi-list"></i></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="programas.html">Programas</a></li>
+      <li><a href="editorial.html">Editorial &amp; Noticias</a></li>
+      <li><a href="aliados.html">Aliados</a></li>
+      <li><a href="contacto.html" class="btn-nav-cta">Contáctanos</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════
+     HERO PRINCIPAL CON SLIDESHOW
+══════════════════════════════════════ -->
+<section class="hero-home">
+  <div class="hero-bg-slides" id="heroSlides">
+    <div class="hero-slide active" style="background-image:url('ImagenesPagina/Actividades/image.png')"></div>
+    <div class="hero-slide" style="background-image:url('ImagenesPagina/EducacionInclusiva/79F21A19-6BAC-4873-B5F6-5D47E8BAFAE7.JPG')"></div>
+    <div class="hero-slide" style="background-image:url('ImagenesPagina/Ambiental/Collage.JPG')"></div>
+    <div class="hero-slide" style="background-image:url('ImagenesPagina/EscuelaEmociones/1000110676.JPG')"></div>
+    <div class="hero-slide" style="background-image:url('ImagenesPagina/Actividades/image (2).png')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-home-inner">
+    <div class="hero-kicker">
+      <i class="bi bi-award-fill"></i>
+      Desde 2014 · Bogotá, Colombia
+    </div>
+    <h1>
+      Formando <em>Sabios</em>,<br>
+      Construyendo <em>Sueños</em>
+    </h1>
+    <p class="hero-sub">
+      Somos una fundación sin ánimo de lucro que transforma vidas a través de la educación,
+      el bienestar emocional y el cuidado ambiental en comunidades de Bogotá.
+    </p>
+    <div class="hero-cta-row">
+      <a href="programas.html" class="gs-btn-gold">
+        <i class="bi bi-grid-fill"></i> Ver todos los programas
+      </a>
+      <a href="contacto.html" class="gs-btn-outline-white">
+        <i class="bi bi-envelope-fill"></i> Contáctanos
+      </a>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <span class="hero-stat-num">+12</span>
+        <span class="hero-stat-label">Años de impacto</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">+500</span>
+        <span class="hero-stat-label">Estudiantes por año</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">18</span>
+        <span class="hero-stat-label">Programas activos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">+12</span>
+        <span class="hero-stat-label">Colegios aliados</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Explorar</span>
+    <i class="bi bi-chevron-double-down"></i>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FRANJA DE PILARES
+══════════════════════════════════════ -->
+<div class="pillars-strip">
+  <div class="pillars-inner">
+    <div class="pillar-item">
+      <div class="pillar-icon"><i class="bi bi-mortarboard-fill"></i></div>
+      <div class="pillar-text">
+        <strong>Educación de Calidad</strong>
+        <span>Pre-ICFES · Refuerzos · Diplomados</span>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon"><i class="bi bi-heart-fill"></i></div>
+      <div class="pillar-text">
+        <strong>Bienestar Integral</strong>
+        <span>Emociones · Psicología · Yoga</span>
+      </div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-icon"><i class="bi bi-tree-fill"></i></div>
+      <div class="pillar-text">
+        <strong>Conciencia Ambiental</strong>
+        <span>PIGA · Reciclaje · Certificación</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     QUIÉNES SOMOS
+══════════════════════════════════════ -->
+<div class="gs-section">
+  <div class="about-split">
+    <div class="about-img-mosaic">
+      <img src="ImagenesPagina/Actividades/image (1).png" alt="Estudiantes Grandes Sabios" class="mosaic-main">
+      <div class="mosaic-badge">
+        <strong>+12</strong>
+        <span>años<br>formando<br>sueños</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="gs-label">Quiénes somos</div>
+      <h2 class="gs-title">"Acoger es vivir el corazón del otro"</h2>
+      <p>La Fundación Grandes Sabios es una entidad sin ánimo de lucro dedicada a promover el desarrollo integral de comunidades en situación de vulnerabilidad, con un enfoque especial en la niñez y la juventud de Bogotá.</p>
+      <p>Creemos en la educación como herramienta esencial para transformar vidas y construir una sociedad más inclusiva, justa y sostenible, donde todas las personas tengan la oportunidad de desarrollarse plenamente.</p>
+      <div class="about-checks">
+        <div class="about-check">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Programas educativos, ambientales y de bienestar emocional</span>
+        </div>
+        <div class="about-check">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Acompañamiento para el acceso a la educación superior pública y gratuita</span>
+        </div>
+        <div class="about-check">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Alianzas con universidades, colegios y organizaciones sociales</span>
+        </div>
+        <div class="about-check">
+          <i class="bi bi-check-circle-fill"></i>
+          <span>Certificados ISO 9001:2015 e ICONTEC — calidad garantizada</span>
+        </div>
+      </div>
+      <a href="nosotros.html" class="gs-btn-navy">
+        <i class="bi bi-arrow-right-circle-fill"></i> Conocer más sobre nosotros
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     NÚMEROS DE IMPACTO
+══════════════════════════════════════ -->
+<div class="gs-section-bg">
+  <div class="gs-section">
+    <div class="text-center mb-48">
+      <div class="gs-label" style="justify-content:center;">Nuestro impacto</div>
+      <h2 class="gs-title">Transformando vidas desde 2014</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-cell">
+        <div class="impact-num">+500<span> </span></div>
+        <div class="impact-label">Estudiantes beneficiados anualmente</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">18<span> </span></div>
+        <div class="impact-label">Programas educativos activos</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">+12<span> </span></div>
+        <div class="impact-label">Colegios e instituciones aliadas</div>
+      </div>
+      <div class="impact-cell">
+        <div class="impact-num">4<span> </span></div>
+        <div class="impact-label">Universidades de Bogotá en red</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PROGRAMAS DESTACADOS
+══════════════════════════════════════ -->
+<div class="gs-section">
+  <div class="text-center mb-48">
+    <div class="gs-label" style="justify-content:center;">Lo que hacemos</div>
+    <h2 class="gs-title">Programas para toda la comunidad</h2>
+    <p class="gs-lead" style="max-width:580px;margin:0 auto;">
+      Desde Pre-ICFES hasta terapias especializadas, gaming educativo y diplomados.
+      Haz clic para conocer cualquier programa en detalle.
+    </p>
+  </div>
+
+  <div class="prog-preview-grid">
+
+    <!-- Card grande: Pre-ICFES -->
+    <a href="programas.html" class="prog-preview-card featured-card">
+      <img src="ImagenesPagina/Actividades/image.png" alt="Pre-ICFES">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-mortarboard-fill"></i> Programa estrella</span>
+        <h3>Pre-ICFES &amp; Pre-Universitario</h3>
+        <p>Simulacros, clases en 5 ejes temáticos, test vocacional y excursiones a universidades públicas.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programa completo</span>
+      </div>
+    </a>
+
+    <!-- Card: Escuela de Emociones -->
+    <a href="programas.html" class="prog-preview-card">
+      <img src="ImagenesPagina/EscuelaEmociones/1000096972.JPG" alt="Escuela de Emociones">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-heart-fill"></i> Bienestar</span>
+        <h3>Escuela de Emociones</h3>
+        <p>Inteligencia emocional, manejo de ansiedad y orientación vocacional.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programa</span>
+      </div>
+    </a>
+
+    <!-- Card: Diversamente -->
+    <a href="programas.html" class="prog-preview-card">
+      <img src="ImagenesPagina/EducacionInclusiva/3b16a94e-857d-4aa1-8e0e-25ed082d057c.JPG" alt="Diversamente">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-people-fill"></i> Inclusión</span>
+        <h3>Diversamente</h3>
+        <p>Educación inclusiva, PIAR y acompañamiento docente y familiar.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programa</span>
+      </div>
+    </a>
+
+    <!-- Card: Ambiental -->
+    <a href="programas.html" class="prog-preview-card">
+      <img src="ImagenesPagina/Ambiental/PHOTO-2025-07-19-09-36-15.JPG" alt="Programa Ambiental">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-tree-fill"></i> Ambiente</span>
+        <h3>Programa Ambiental</h3>
+        <p>Puntos ecológicos, recolección de residuos y certificación PIGA.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programa</span>
+      </div>
+    </a>
+
+    <!-- Card: Terapia Ocupacional -->
+    <a href="programas.html" class="prog-preview-card">
+      <img src="ImagenesPagina/EducacionInclusiva/PHOTO-2025-07-30-12-29-38.JPG" alt="Terapia Ocupacional">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-bandaid-fill"></i> Salud</span>
+        <h3>Terapia Ocupacional</h3>
+        <p>Intervención especializada para mejorar autonomía y desempeño funcional.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programa</span>
+      </div>
+    </a>
+
+    <!-- Card: Gaming -->
+    <a href="programas.html" class="prog-preview-card">
+      <img src="ImagenesPagina/Actividades/image (3).png" alt="Gaming y Cultura">
+      <div class="prog-preview-overlay"></div>
+      <div class="prog-preview-body">
+        <span class="prog-preview-tag"><i class="bi bi-dice-5-fill"></i> Gaming &amp; Cultura</span>
+        <h3>D&amp;D · Marvel · Juegos de Rol</h3>
+        <p>Creatividad, estrategia y trabajo en equipo a través del gaming.</p>
+        <span class="prog-preview-arrow"><i class="bi bi-arrow-right-circle-fill"></i> Ver programas</span>
+      </div>
+    </a>
+
+    <!-- Card: Ver todos -->
+    <a href="programas.html" class="prog-preview-card" style="min-height:200px;">
+      <div style="position:absolute;inset:0;background:var(--gold);"></div>
+      <div class="prog-preview-body" style="text-align:center;padding:40px;">
+        <i class="bi bi-grid-fill" style="font-size:2.5rem;color:var(--navy);display:block;margin-bottom:14px;"></i>
+        <h3 style="color:var(--navy);font-size:1.3rem;">Ver los 18 programas</h3>
+        <p style="color:rgba(13,37,69,.65);">Salud, educación, gaming, diplomados y más.</p>
+        <span class="prog-preview-arrow" style="color:var(--navy);margin-top:14px;display:inline-flex;">
+          <i class="bi bi-arrow-right-circle-fill"></i> Explorar oferta completa
+        </span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     GALERÍA FOTOGRÁFICA
+══════════════════════════════════════ -->
+<div class="gs-section-bg">
+  <div class="gs-section">
+    <div class="text-center mb-48">
+      <div class="gs-label" style="justify-content:center;">En imágenes</div>
+      <h2 class="gs-title">La Fundación en acción</h2>
+    </div>
+    <div class="gallery-mosaic">
+      <img src="ImagenesPagina/Actividades/image.png"        alt="Actividades" class="g-tall">
+      <img src="ImagenesPagina/Ambiental/Collage.JPG"       alt="Ambiental">
+      <img src="ImagenesPagina/EscuelaEmociones/1000096968.JPG" alt="Emociones">
+      <img src="ImagenesPagina/EducacionInclusiva/79F21A19-6BAC-4873-B5F6-5D47E8BAFAE7.JPG" alt="Inclusiva" class="g-tall">
+      <img src="ImagenesPagina/Actividades/image (4).png"   alt="Actividades 4">
+      <img src="ImagenesPagina/Ambiental/PHOTO-2025-08-19-14-15-14.JPG" alt="Ambiental 2">
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     QUOTE / FRASE INSTITUCIONAL
+══════════════════════════════════════ -->
+<div class="quote-section">
+  <div class="quote-inner">
+    <span class="quote-icon"><i class="bi bi-quote"></i></span>
+    <p class="quote-text">
+      Acoger es vivir el corazón del otro.<br>
+      Desde Grandes Sabios creemos que la educación es el camino más poderoso para transformar vidas.
+    </p>
+    <span class="quote-author">— Fundación Grandes Sabios · Bogotá, Colombia</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     ÚLTIMAS NOTICIAS
+══════════════════════════════════════ -->
+<div class="gs-section">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;">
+    <div>
+      <div class="gs-label">Actualidad</div>
+      <h2 class="gs-title" style="margin:0;">Últimas noticias</h2>
+    </div>
+    <a href="editorial.html" class="gs-btn-navy">
+      <i class="bi bi-newspaper"></i> Ver todas las noticias
+    </a>
+  </div>
+
+  <div class="news-strip">
+    <!-- Noticia principal -->
+    <a href="editorial.html" class="news-strip-main">
+      <img src="ImagenesPagina/Actividades/image.png" alt="Pre-ICFES 2026">
+      <div class="news-strip-main-body">
+        <span class="ntag"><i class="bi bi-star-fill"></i> Destacado · 2026</span>
+        <h3>Arrancamos el ciclo Pre-ICFES &amp; Pre-Universitario 2026</h3>
+        <p>Más de 150 jóvenes bogotanos inician su preparación para las pruebas Saber 11 con simulacros, orientación vocacional y excursiones a universidades públicas.</p>
+      </div>
+    </a>
+    <!-- Noticias secundarias -->
+    <div class="news-strip-side">
+      <a href="editorial.html" class="news-side-card">
+        <span class="ntag ntag-green"><i class="bi bi-tree-fill"></i> Ambiental</span>
+        <h4>Instituciones aliadas certificadas en el Programa PIGA</h4>
+        <p>Certificación ambiental lograda gracias al Programa Ambiental de Grandes Sabios.</p>
+      </a>
+      <a href="editorial.html" class="news-side-card">
+        <span class="ntag ntag-blue"><i class="bi bi-dice-5-fill"></i> Gaming</span>
+        <h4>Juegos de Rol y D&amp;D llegan a la Fundación</h4>
+        <p>Nuevos programas de Gaming &amp; Cultura. Inscripciones abiertas para todas las edades.</p>
+      </a>
+    </div>
+    <div class="news-strip-side">
+      <a href="editorial.html" class="news-side-card">
+        <span class="ntag ntag-red"><i class="bi bi-heart-fill"></i> Bienestar</span>
+        <h4>Escuela de Emociones impacta +500 estudiantes</h4>
+        <p>Talleres de inteligencia emocional y manejo de ansiedad en colegios de Bogotá.</p>
+      </a>
+      <a href="editorial.html" class="news-side-card">
+        <span class="ntag ntag-gold"><i class="bi bi-award-fill"></i> Formación</span>
+        <h4>Diplomados y Cursos Cortos 2026 — ¡Cupos limitados!</h4>
+        <p>Nueva oferta de formación continua para docentes y líderes comunitarios.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     ALIADOS (TICKER)
+══════════════════════════════════════ -->
+<div class="gs-section-bg">
+  <div class="gs-section">
+    <div class="text-center mb-48">
+      <div class="gs-label" style="justify-content:center;">Red institucional</div>
+      <h2 class="gs-title">Aliados que construyen con nosotros</h2>
+    </div>
+    <div class="ally-ticker-wrap">
+      <div class="ally-ticker" id="allyTicker">
+        <!-- Primera pasada -->
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniverisdadRosario.png" alt="Universidad del Rosario"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadDistrital.png" alt="Universidad Distrital"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadCundinamarca.png" alt="Universidad de Cundinamarca"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadJaveriana.png" alt="Universidad Javeriana"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/acevedoyGomez.jpeg" alt="Acevedo y Gómez"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/cafam.jpg" alt="CAFAM"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/GimnasioFemenino.jpg" alt="Gimnasio Femenino"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/LogoOfelia.jpg" alt="Ofelia Uribe"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/liceoMax.jpeg" alt="Liceo Max Planck"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/logoIntegral.png" alt="Integral Avancemos"></div>
+        <!-- Segunda pasada (duplicado para loop infinito) -->
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniverisdadRosario.png" alt="Universidad del Rosario"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadDistrital.png" alt="Universidad Distrital"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadCundinamarca.png" alt="Universidad de Cundinamarca"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/UniversidadJaveriana.png" alt="Universidad Javeriana"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/acevedoyGomez.jpeg" alt="Acevedo y Gómez"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/cafam.jpg" alt="CAFAM"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/GimnasioFemenino.jpg" alt="Gimnasio Femenino"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/LogoOfelia.jpg" alt="Ofelia Uribe"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/liceoMax.jpeg" alt="Liceo Max Planck"></div>
+        <div class="ally-logo-wrap"><img src="ImagenesPagina/Alianzas/logoIntegral.png" alt="Integral Avancemos"></div>
+      </div>
+    </div>
+    <div class="text-center mt-48">
+      <a href="aliados.html" class="gs-btn-navy"><i class="bi bi-building"></i> Ver todos los aliados</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     CTA CONTACTO
+══════════════════════════════════════ -->
+<div class="gs-section">
+  <div class="home-cta-split">
+    <div class="home-cta-left">
+      <h2>¿Tu institución quiere hacer parte de la red Grandes Sabios?</h2>
+      <p>Llevamos nuestros programas a colegios, comunidades y organizaciones de toda Bogotá. Cuéntanos qué necesitas y diseñamos juntos la propuesta ideal.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="contacto.html" class="gs-btn-gold"><i class="bi bi-envelope-fill"></i> Escribir ahora</a>
+        <a href="programas.html" class="gs-btn-outline-white"><i class="bi bi-grid-fill"></i> Ver programas</a>
+      </div>
+    </div>
+    <div class="home-cta-right">
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon"><i class="bi bi-telephone-fill"></i></div>
+        <div>
+          <strong>Llámanos</strong>
+          <span>+57 322 304 2685</span>
+        </div>
+      </div>
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon"><i class="bi bi-envelope-fill"></i></div>
+        <div>
+          <strong>Escríbenos</strong>
+          <span>secretariageneral@grandessabios.org</span>
+        </div>
+      </div>
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+        <div>
+          <strong>Visítanos</strong>
+          <span>Calle 2 #68f-12, Bogotá D.C.</span>
+        </div>
+      </div>
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon"><i class="bi bi-whatsapp"></i></div>
+        <div>
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/573223042685" target="_blank" rel="noopener" style="color:var(--navy);font-weight:600;">Chatear ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="gs-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div class="footer-brand-col">
+        <span class="brand-name">Fundación Grandes Sabios</span>
+        <p>Transformando vidas a través de la educación, el ambiente y el bienestar emocional en comunidades de Bogotá desde 2014.</p>
+        <div class="social-row">
+          <a class="social-btn" href="https://www.facebook.com/share/17hf3UzGaw/?mibextid=wwXIfr" target="_blank" rel="noopener"><img src="ImagenesPagina/facebook.svg" alt="Facebook"></a>
+          <a class="social-btn" href="https://www.instagram.com/fundaciongrandessabios" target="_blank" rel="noopener"><img src="ImagenesPagina/instagram.svg" alt="Instagram"></a>
+          <a class="social-btn" href="https://wa.me/573223042685" target="_blank" rel="noopener"><img src="ImagenesPagina/whatsapp.svg" alt="WhatsApp"></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h6>Navegación</h6>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="programas.html">Programas</a></li>
+          <li><a href="editorial.html">Editorial &amp; Noticias</a></li>
+          <li><a href="aliados.html">Aliados</a></li>
+          <li><a href="contacto.html">Contáctanos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h6>Programas</h6>
+        <ul>
+          <li><a href="programas.html">Pre-ICFES &amp; Pre-Uni</a></li>
+          <li><a href="programas.html">Escuela de Emociones</a></li>
+          <li><a href="programas.html">Diversamente</a></li>
+          <li><a href="programas.html">Terapia Ocupacional</a></li>
+          <li><a href="programas.html">Gaming &amp; Cultura</a></li>
+          <li><a href="programas.html">Diplomados &amp; Cursos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h6>Contacto</h6>
+        <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><span>+57 322 304 2685</span></div>
+        <div class="footer-contact-item"><i class="bi bi-envelope-fill"></i><span>secretariageneral@grandessabios.org</span></div>
+        <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span>Calle 2 #68f-12, Bogotá D.C.</span></div>
+      </div>
+
+    </div><!-- /footer-grid -->
+
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Fundación Grandes Sabios – Todos los derechos reservados.</p>
+      <p>Entidad sin ánimo de lucro · Bogotá, Colombia</p>
+    </div>
+
+    <div class="footer-certs">
+      <span class="footer-certs-label">Certificaciones</span>
+      <img src="ImagenesPagina/Certificaciones/certificados_icontec_iqnet.png"
+           alt="Certificado ICONTEC &amp; IQNet ISO 9001"
+           class="cert-logo"
+           title="Certificado ICONTEC · IQNet ISO 9001:2015">
+    </div>
+
+  </div><!-- /footer-inner -->
+</footer>
+
+<a href="https://wa.me/573223042685" class="gs-wa-float" target="_blank" rel="noopener"><img src="ImagenesPagina/whatsapp.svg" alt="WhatsApp"></a>
+
+<script>
+  /* ── AÑO ── */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ── NAVBAR SCROLL ── */
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  /* ── MENÚ MÓVIL ── */
+  document.getElementById('navToggle').addEventListener('click', () =>
+    document.getElementById('navLinks').classList.toggle('open'));
+
+  /* ── HERO SLIDESHOW ── */
+  const slides = document.querySelectorAll('.hero-slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 4500);
+
+  /* ── CONTADOR ANIMADO ── */
+  function animateCount(el, target, suffix) {
+    let start = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = (start === target && suffix) ? suffix + target : start;
+      if (start >= target) clearInterval(timer);
+    }, 24);
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.impact-num').forEach(el => {
+          const raw = el.textContent.trim();
+          const num = parseInt(raw.replace(/\D/g,''));
+          const prefix = raw.startsWith('+') ? '+' : '';
+          animateCount(el, num, prefix);
+        });
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const impactEl = document.querySelector('.impact-grid');
+  if (impactEl) observer.observe(impactEl);
+</script>
+</body>
+</html>
